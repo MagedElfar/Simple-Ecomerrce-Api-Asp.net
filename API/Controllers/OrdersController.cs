@@ -7,7 +7,7 @@ using Core.Entities;
 using Core.Errors;
 using Core.Interfaces.Services;
 using Core.Specifications;
-using Core.Specifications.Products;
+using Core.Specifications.SpecificationBuilder;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -44,10 +44,13 @@ namespace API.Controllers
         {
             var userId = HttpContext.User.GetUserId();
 
-            var order = await ordersService.FindOneAync(new BaseSpecifications<Order>(
-                criteria: x => x.UserId == userId && x.Id == id,
-                includes: new string[] {"Items" , "PaymentMethod"}
-            ));
+            var bulder = new OrderSpecificationBuilder()
+                .WithUserId(userId)
+                .WithId(id)
+                .Include("Items")
+                .Include("PaymentMethod");
+
+            var order = await ordersService.FindOneAync(bulder.Build());
 
             if(order == null) 
                 return NotFound(new ApiErrorResponse(404 , "Order not Found"));
@@ -59,18 +62,16 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PagningListDto<OrderDto>>>> GetUserOrders([FromQuery] OrderQueryDto orderQuery) 
         {
+            var builder = new OrderSpecificationBuilder()
+                .WithStatus(orderQuery.Status)
+                .WithEndDate(orderQuery.ToDate)
+                .WithStartDate(orderQuery.FromDate)
+                .WithUserId(HttpContext.User.GetUserId())
+                .WithOrderBy("OrderDate", false)
+                .WithLimit(orderQuery.Limit)
+                .WithPage(orderQuery.Page);
 
-            var spec = new OrderFilterSpecifications(
-                orderBy: "OrderDate",
-                fromDate: orderQuery.FromDate,
-                toDate: orderQuery.ToDate,
-                userId: HttpContext.User.GetUserId(),
-                status:orderQuery.Status,
-                limit:orderQuery.Limit,
-                page:orderQuery.Page
-            );
-
-            var result = await ordersService.FindAndCountAll(spec);
+            var result = await ordersService.FindAndCountAll(builder.Build());
 
 
             return Ok(new PagningListDto<OrderDto>

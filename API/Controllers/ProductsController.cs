@@ -2,7 +2,6 @@
 using Core.Errors;
 using AutoMapper;
 using Core.Entities;
-using Core.Specifications.Products;
 using Microsoft.AspNetCore.Mvc;
 using Core.Interfaces.Services;
 using Core.Specifications;
@@ -10,6 +9,7 @@ using Core.Dtos.Pagning;
 using Microsoft.AspNetCore.Authorization;
 using Core.Enums;
 using Core.Dtos;
+using Core.Specifications.SpecificationBuilder;
 
 namespace API.Controllers
 {
@@ -28,18 +28,17 @@ namespace API.Controllers
         public async Task<ActionResult<IEnumerable<PagningListDto<ProductDto>>>> GetAllProduct([FromQuery] ProductQueryDto productQueryDto)
         {
 
-            var spec = new ProductFilterSpecifications(
-                productQueryDto.Sort, 
-                productQueryDto.Name, 
-                productQueryDto.BrandId, 
-                productQueryDto.CategoryId,
-                productQueryDto.Limit,
-                productQueryDto.Page,
-                new[] {"Brand"},
-                ascending: productQueryDto.Asc ?? true
-            );
+            var bulider = new ProductSpecificationBuilder()
+                .WithName(productQueryDto.Name)
+                .WithTypeId(productQueryDto.CategoryId)
+                .WithBrandId(productQueryDto.BrandId)
+                .WithLimit(productQueryDto.Limit)
+                .WithPage(productQueryDto.Page)
+                .WithOrderBy(productQueryDto.Sort, productQueryDto.Asc ?? true)
+                .Include("Brand")
+                .Include("ProductType");
 
-            var result = await productsService.FindAndCountAll(spec);
+            var result = await productsService.FindAndCountAll(bulider.Build());
 
 
             return Ok(new PagningListDto<ProductDto>
@@ -52,9 +51,14 @@ namespace API.Controllers
         [HttpGet("{id:int}", Name = "GetSingleProduct")]
         public async Task<ActionResult<ProductDto>> GetProduct(int id)
         {
+            var spec = new ProductSpecificationBuilder()
+                .WithTypeId(id)
+                .Include("Brand")
+                .Include("ProductType")
+                .Build();
 
 
-            var product = await productsService.FindOneAync(new BaseSpecifications<Product>(x=> x.Id == id , includes: new[] {"Brand" , "ProductType"}));
+            var product = await productsService.FindOneAync(spec);
 
             if (product is null) return NotFound(new ApiErrorResponse(400 , "Product not Found"));
 

@@ -14,7 +14,8 @@ namespace Infrastructure
         public static IQueryable<TEntity> GetQuery(IQueryable<TEntity> query , ISpecifications<TEntity> specifications) {
             var newQuery = query;
 
-            if (specifications.Criteria is not null) {
+            if (specifications.Criteria is not null)
+            {
                 newQuery = newQuery.Where(specifications.Criteria);
             }
 

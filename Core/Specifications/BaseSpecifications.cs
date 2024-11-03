@@ -14,8 +14,8 @@ namespace Core.Specifications
             string[] includes = null,
             string orderBy = null,
             bool ascending = true,
-            int? take = null,
-            int? skip = null)
+            int take = 0,
+            int skip = 0)
         {
             Criteria = criteria;
             ApplyIncludes(includes);
@@ -54,12 +54,12 @@ namespace Core.Specifications
             }
         }
 
-        protected void ApplyPaging(int? limit = null, int? page = null)
+        protected void ApplyPaging(int limit, int page)
         {
-            if (limit.HasValue && page.HasValue)
+            if (limit > 0 && page > 0)
             {
-                Take = limit.Value;
-                Skip = (page.Value - 1) * limit.Value; // Ensure Skip is zero-based.
+                Take = limit;
+                Skip = (page - 1) * limit; // Ensure Skip is zero-based.
                 IsPagingEnabled = true;
             }
         }
