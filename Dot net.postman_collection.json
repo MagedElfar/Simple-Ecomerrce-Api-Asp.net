@@ -86,7 +86,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\":\"test\",\r\n    \"email\":\"test@gmail.com\",\r\n    \"password\":\"123456789\"\r\n}",
+							"raw": "{\r\n    \"username\":\"test\",\r\n    \"email\":\"test@gmail.com\",\r\n    \"password\":\"12345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -109,6 +109,302 @@
 			]
 		},
 		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "get categories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\":\"electronics\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\":\"electronics\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/categories/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"categories",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\":\"Gurncher\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\":\"phones\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/categories/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"categories",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\":\"electronics\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/categories/6",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"categories",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brands",
+			"item": [
+				{
+					"name": "Get Brands",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"BrandName\":\"H&M\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/brands",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Brand",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"BrandName\":\"Zara\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/brands",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update brand",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"BrandName\":\"phones\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/brands/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"brands",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Brand",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\":\"electronics\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/brands/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"brands",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete brand",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\":\"electronics\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/brands/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"brands",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Products",
 			"item": [
 				{
@@ -117,7 +413,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/products?BrandId=1",
+							"raw": "{{url}}/products",
 							"host": [
 								"{{url}}"
 							],
@@ -132,12 +428,13 @@
 								},
 								{
 									"key": "sort",
-									"value": "price",
+									"value": "Quantity",
 									"disabled": true
 								},
 								{
 									"key": "BrandId",
-									"value": "1"
+									"value": "1",
+									"disabled": true
 								},
 								{
 									"key": "CategoryId",
@@ -146,7 +443,7 @@
 								},
 								{
 									"key": "Name",
-									"value": "M",
+									"value": "h",
 									"disabled": true
 								},
 								{
@@ -170,13 +467,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/products/4",
+							"raw": "{{url}}/products/5",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"products",
-								"4"
+								"5"
 							]
 						}
 					},
@@ -192,42 +489,49 @@
 							"formdata": [
 								{
 									"key": "categoryId",
-									"value": "1",
+									"value": "2",
 									"type": "text"
 								},
 								{
 									"key": "productName",
-									"value": "IPhone S13",
+									"value": "Apple iPhone 16 (256 GB) - Pink",
 									"type": "text"
 								},
 								{
 									"key": "productSKU",
-									"value": "ip-00s14",
+									"value": "iph-001",
 									"type": "text"
 								},
 								{
 									"key": "productDescription",
-									"value": "cam 2 far spot",
+									"value": "Apple iPhone 16 (256 GB) - Pink",
 									"type": "text"
 								},
 								{
 									"key": "productPrice",
-									"value": "1400.99",
+									"value": "1000",
 									"type": "text"
 								},
 								{
 									"key": "File",
 									"type": "file",
-									"src": "/C:/Users/HP/Downloads/images.jpg"
+									"src": "/C:/Users/HP/Downloads/Image/51F0LO7pgaL._AC_SX679_.jpg",
+									"disabled": true
+								},
+								{
+									"key": "brandId",
+									"value": "3",
+									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{url}}/products",
+							"raw": "{{url}}/admin/products",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
+								"admin",
 								"products"
 							]
 						}
@@ -241,7 +545,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"categoryId\": 1,\r\n    \"brandId\": 1,\r\n    \"productName\": \"NAME\",\r\n    \"productSKU\": \"SKU-001\",\r\n    \"productDescription\": \"productDescription\",\r\n    \"productPrice\": 100\r\n}",
+							"raw": "{\r\n    \"categoryId\": 2,\r\n    \"brandId\": 4,\r\n    \"productName\": \"Apple iPhone 16 (256 GB) - Pink\",\r\n    \"productSKU\": \"lap-hp-001\",\r\n    \"productDescription\": \"Apple iPhone 16 (256 GB) - Pink\",\r\n    \"productPrice\": 1025\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -249,13 +553,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/products/1",
+							"raw": "{{url}}/admin/products/4",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
+								"admin",
 								"products",
-								"1"
+								"4"
 							]
 						}
 					},
@@ -267,13 +572,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/products/4",
+							"raw": "{{url}}/admin/products/5",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
+								"admin",
 								"products",
-								"4"
+								"5"
 							]
 						}
 					},
@@ -290,18 +596,51 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/HP/Downloads/images.jpg"
+									"src": "/C:/Users/HP/Downloads/Image/mobile.png"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{url}}/products/3",
+							"raw": "{{url}}/admin/products/4",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
+								"admin",
 								"products",
-								"3"
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Stock mangment",
+			"item": [
+				{
+					"name": "Update stock",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Quantity\":234,\r\n    \"ProductId\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/admin/stock",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"stock"
 							]
 						}
 					},
@@ -362,7 +701,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"cartItems\": [\r\n        {\r\n            \"productId\": 22,\r\n            \"quantity\": 2\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"cartItems\": [\r\n        {\r\n            \"productId\": 1,\r\n            \"quantity\": 2\r\n        },\r\n        {\r\n            \"productId\": 2,\r\n            \"quantity\": 5\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -416,7 +755,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"customerEmail\": \"user@example.com\",\r\n  \"phone\": \"00201115138688\",\r\n  \"firstName\": \"Maged\",\r\n  \"lastName\": \"Elfar\",\r\n  \"street\": \"street\",\r\n  \"city\": \"city\",\r\n  \"state\": \"state\",\r\n  \"zipcode\": \"12345\"\r\n}",
+							"raw": "{\r\n  \"customerEmail\": \"user@example.com\",\r\n  \"phone\": \"00201115138688\",\r\n  \"firstName\": \"Maged\",\r\n  \"lastName\": \"Elfar\",\r\n  \"street\": \"street\",\r\n  \"city\": \"city\",\r\n  \"state\": \"state\",\r\n  \"zipcode\": \"12345\",\r\n  \"paymentMethodId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -441,13 +780,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/orders/33",
+							"raw": "{{url}}/orders/2",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"orders",
-								"33"
+								"2"
 							]
 						}
 					},
@@ -474,12 +813,12 @@
 								},
 								{
 									"key": "ToDate",
-									"value": "30/10/2024",
+									"value": "31/10/2024",
 									"disabled": true
 								},
 								{
 									"key": "Status",
-									"value": "Shipping",
+									"value": "Pending",
 									"disabled": true
 								},
 								{
@@ -500,54 +839,6 @@
 			]
 		},
 		{
-			"name": "Brands",
-			"item": [
-				{
-					"name": "index",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/brands",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"brands"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add Brand",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"BrandName\": \"Nick\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/brands",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"brands"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Payments",
 			"item": [
 				{
@@ -557,7 +848,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"orderId\":35\r\n}",
+							"raw": "{\r\n    \"orderId\":6\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -644,7 +935,7 @@
 	"variable": [
 		{
 			"key": "url",
-			"value": "https://localhost:7155/api",
+			"value": "https://localhost:7294/api",
 			"type": "string"
 		}
 	]

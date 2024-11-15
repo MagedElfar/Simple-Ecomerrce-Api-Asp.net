@@ -1,7 +1,6 @@
 ﻿using API.Extensions;
 using AutoMapper;
-using Core.Dtos.Cart;
-using Core.Dtos.Products;
+using Core.DTOS.Cart;
 using Core.Entities;
 using Core.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -13,34 +12,31 @@ namespace API.Controllers
     public class CartsController : BaseApiController
     {
         private readonly ICartService cartService;
-        private readonly IMapper mapper;
 
-        public CartsController(ICartService cartService, IMapper mapper)
+        public CartsController(ICartService cartService)
         {
             this.cartService = cartService;
-            this.mapper = mapper;
         }
 
-        [HttpGet()]
+        [HttpGet]
         [Authorize]
         public async Task<ActionResult<CartDto>> GetCart()
         {
             var userId = HttpContext.User.GetUserId();
 
-            var cart = await cartService.GetCartByIdAsync(userId.ToString());
+            var cart = await cartService.MappingCart(userId);
 
-
-            return Ok(cart is not null ? mapper.Map<Cart, CartDto>(cart) : new CartDto(userId.ToString()));
+            return Ok(cart);
         }
 
-        [HttpDelete()]
+        [HttpDelete]
         [Authorize]
-        public async Task<ActionResult<CartDto>> DeleteCart()
+        public async Task<ActionResult> DeleteCart()
         {
             var userId = HttpContext.User.GetUserId();
 
-            await cartService.DeleteCart(userId.ToString());
-            return Ok();
+            await cartService.DeleteCart(userId);
+            return NoContent();
         }
 
 
@@ -52,18 +48,7 @@ namespace API.Controllers
 
             var userId = HttpContext.User.GetUserId();
 
-            var updatedCart = new Cart(userId.ToString());
-
-            updatedCart.Items = updateCartDto.CartItems.Select(x => new CartItem
-            {
-                Quantity = x.Quantity,
-                ProductId = x.ProductId,
-            }).ToList();
-
-
-            var cart = await cartService.UpdateCart(updatedCart);
-
-            return Ok(mapper.Map<Cart, CartDto>(cart) );
+            return Ok(await cartService.UpdateCart(userId, updateCartDto));
 
         }
     }

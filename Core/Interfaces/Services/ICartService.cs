@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿using Core.DTOS.Cart;
+using Core.Entities;
 using Core.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace Core.Interfaces.Services
 {
     public interface ICartService
     {
-        Task<Cart> GetCartByIdAsync(string id);
-
-        Task<Cart> UpdateCart(Cart cart);
-        Task<bool> DeleteCart(string cart);
+        Task<CartDto> MappingCart(int id);
+        Task<Cart> GetCartByIdAsync(int id);
+        Task<CartDto> UpdateCart(int id, UpdateCartDto updateCartDto);
+        Task<bool> DeleteCart(int id);
     }
 }

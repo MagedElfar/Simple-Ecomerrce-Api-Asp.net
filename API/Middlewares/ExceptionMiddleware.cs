@@ -1,5 +1,4 @@
 ﻿using Core.Errors;
-using Azure;
 using Core.Exceptions;
 using System.Net;
 using System.Text.Json;
@@ -28,7 +27,7 @@ namespace API.Middlewares
 
 
             }
-            catch (BadRequsetException ex)
+            catch (BadRequestException ex)
             {
                 await HandleExceptionAsync(context, HttpStatusCode.BadRequest, ex);
             }
@@ -66,7 +65,7 @@ namespace API.Middlewares
 
         private object CreateErrorResponse(HttpStatusCode statusCode, Exception ex)
         {
-            if(ex is BadRequsetException apiEX && apiEX.Errors is not null)
+            if(ex is BadRequestException apiEX && apiEX.Errors is not null)
             {
                 return new ApiValidationErrorResponse(apiEX.Errors);
             }

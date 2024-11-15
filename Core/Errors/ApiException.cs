@@ -9,11 +9,6 @@ namespace Core.Errors
             Details = details;
         }
 
-        public string Details { get; set; }
-
-        public static implicit operator Version(ApiException v)
-        {
-            throw new NotImplementedException();
-        }
+        public string? Details { get; set; }
     }
 }

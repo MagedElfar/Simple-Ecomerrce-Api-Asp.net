@@ -1,21 +1,20 @@
 ﻿using Core.Entities;
-using Core.Interfaces.Repositories;
 using Infrastructure.Data;
-using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using StackExchange.Redis;
 
 namespace API.Extensions
 {
     public static class DatabaseExtensions
     {
+        public static IServiceCollection AddDatabaseConections(this IServiceCollection services) {
 
-        public static IServiceCollection AddDatabaseConnections(this IServiceCollection services , WebApplicationBuilder builder) {
+            var serviceProvider = services.BuildServiceProvider();
+            var configration = serviceProvider.GetRequiredService<IConfiguration>();
 
             services.AddDbContext<AdbContext>(opthions =>
             {
-                opthions.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+                opthions.UseSqlServer(configration.GetConnectionString("Default"));
             });
 
             services
@@ -30,27 +29,11 @@ namespace API.Extensions
                .AddEntityFrameworkStores<AdbContext>()
                .AddDefaultTokenProviders();
 
-            builder.Services.AddSingleton<IConnectionMultiplexer>(c =>
-            {
-                var configretion = ConfigurationOptions.Parse(builder.Configuration.GetConnectionString("Redis"), true);
-
-                configretion.AbortOnConnectFail = true;
-
-                return ConnectionMultiplexer.Connect(configretion);
-            });
-
 
             return services;
         }
 
-        public static IServiceCollection AddDatabasRepositories(this IServiceCollection services) {
-            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddScoped<IUnitOfWork, UntitOfWork>();
-            services.AddScoped<ICartRepository, CartRepository>();
-            services.AddScoped<IBrandRepository, BrandRepository>();
 
-            return services;
-        }
         public static async Task MigrateAndSeedDatabaseAsync(this IApplicationBuilder app)
         {
             using (var scope = app.ApplicationServices.CreateScope())

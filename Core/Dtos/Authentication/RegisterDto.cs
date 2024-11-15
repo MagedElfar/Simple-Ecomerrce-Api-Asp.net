@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Dtos.Authentication
+namespace Core.DTOS.Authentication
 {
     public class RegisterDto
     {

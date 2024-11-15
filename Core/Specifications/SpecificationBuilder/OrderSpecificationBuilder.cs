@@ -10,13 +10,11 @@ namespace Core.Specifications.SpecificationBuilder
     // Builder class for constructing ProductFilterSpecifications
     public class OrderSpecificationBuilder:BaseSpecificationBuilder<Order , OrderSpecificationBuilder>
     {
-        public OrderSpecificationBuilder WithUserId(int? userId)
+        public OrderSpecificationBuilder WithUserId(int userId)
         {
-            if (userId != null)
-            {
+            
+            _criteria = PredicateBuilder.And(_criteria, x => x.UserId == userId);
 
-                _criteria = PredicateBuilder.And(_criteria, x => x.UserId == userId);
-            };
             return this;
         }
 
@@ -32,6 +30,15 @@ namespace Core.Specifications.SpecificationBuilder
                 _criteria = PredicateBuilder.And(_criteria,x => x.OrderDate >= dateParsed );
 
             }
+            return this;
+
+        }
+
+        public OrderSpecificationBuilder WithPaymentIntentId(string paymentIntentId)
+        {
+           
+            _criteria = PredicateBuilder.And(_criteria, x => x.PaymentIntentId == paymentIntentId);
+
             return this;
 
         }
@@ -52,9 +59,9 @@ namespace Core.Specifications.SpecificationBuilder
 
         }
 
-        public OrderSpecificationBuilder WithStatus(string? status)
+        public OrderSpecificationBuilder WithStatus(string status)
         {
-            if (Enum.TryParse<OrderStatusEnum>(status, true, out var parsedStatus))
+            if (Enum.TryParse<OrderStatus>(status, true, out var parsedStatus))
             {
                 _criteria = PredicateBuilder.And(_criteria, x => x.OrderStatus == parsedStatus);
 

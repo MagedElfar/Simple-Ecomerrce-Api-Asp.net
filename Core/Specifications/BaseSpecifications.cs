@@ -1,7 +1,4 @@
-﻿using Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Core.Interfaces.Services;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -15,8 +12,8 @@ namespace Core.Specifications
             string orderBy = null,
             bool ascending = true,
             int take = 0,
-            int skip = 0)
-        {
+            int skip = 0
+        ){
             Criteria = criteria;
             ApplyIncludes(includes);
             ApplySorting(orderBy, ascending);
@@ -29,7 +26,7 @@ namespace Core.Specifications
         public Expression<Func<T, object>> OrderByDesc { get; private set; }
         public int Take { get; private set; }
         public int Skip { get; private set; }
-        public bool IsPagingEnabled { get;  set; }
+        public bool IsPagingEnabled { get; set; }
 
         // Apply methods
         protected void ApplySorting(string propertyName, bool ascending = true)

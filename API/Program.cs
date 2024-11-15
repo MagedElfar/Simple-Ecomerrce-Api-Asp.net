@@ -1,11 +1,6 @@
+
 using API.Extensions;
 using API.Middlewares;
-using Core.Entities;
-using Infrastructure.Data;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using StackExchange.Redis;
-using Stripe;
 
 namespace API
 {
@@ -15,18 +10,14 @@ namespace API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-
-            // Add services to the container.
-            builder.Services.AddControllers();
-
-            builder.Services.AddDatabaseConnections(builder);
-            builder.Services.AddApplicationOptions(builder);
-            builder.Services.AddSwaggerServices();
             builder.Services.AddApplicationServices();
-            builder.Services.AddDatabasRepositories();
-            builder.Services.AddApplicationAddAuthentication(builder);
-            builder.Services.AddCustomServices();
-           
+            builder.Services.AddDatabaseConections();
+            builder.Services.AddRedis();
+            builder.Services.AddApplicationOptions();
+            builder.Services.AddServices();
+            builder.Services.AddSwaggerServices();
+            builder.Services.AddAuthenticationServices();
+
             var app = builder.Build();
 
             await app.MigrateAndSeedDatabaseAsync();
@@ -47,12 +38,8 @@ namespace API
 
             app.UseCors("CorsPolicy");
 
-            app.UseAuthentication();
-
             app.UseAuthorization();
-
             app.MapControllers();
-
             app.Run();
         }
     }

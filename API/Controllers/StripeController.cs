@@ -27,6 +27,7 @@ namespace API.Controllers
 
             var stripeEvent = EventUtility.ConstructEvent(json, Request.Headers["Stripe-Signature"] , options.Value.WebHookSecret, throwOnApiVersionMismatch: false);
 
+
             PaymentIntent? paymentIntent;
 
             switch (stripeEvent.Type) {

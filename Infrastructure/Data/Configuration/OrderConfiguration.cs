@@ -65,7 +65,7 @@ namespace Infrastructure.Data.Configuration
             builder.Property(o => o.OrderStatus)
            .HasConversion(
                x => x.ToString(),
-               x => (OrderStatusEnum) Enum.Parse(typeof(OrderStatusEnum), x)
+               x => (OrderStatus) Enum.Parse(typeof(OrderStatus), x)
             )
            .HasColumnType("VARCHAR")
            .HasMaxLength(100);

@@ -7,9 +7,11 @@ namespace API.Extensions
 {
     public static class AuthenticationExtension
     {
-        public static IServiceCollection AddApplicationAddAuthentication(this IServiceCollection services , WebApplicationBuilder builder) {
+        public static IServiceCollection AddAuthenticationServices(this IServiceCollection services ) {
 
-            var jwtOptions = builder.Configuration.GetSection("JWT").Get<JWTOption>();
+            var serviceProvider = services.BuildServiceProvider();
+            var configration = serviceProvider.GetRequiredService<IConfiguration>();
+            var jwtOptions = configration.GetSection("JWT").Get<JwtOptions>();
 
             services.AddAuthentication(options => {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

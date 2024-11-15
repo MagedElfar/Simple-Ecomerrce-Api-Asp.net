@@ -1,11 +1,9 @@
 ﻿using API.Extensions;
 using AutoMapper;
-using Core.Dtos.Cart;
-using Core.Dtos.Payments;
+using Core.DTOS.Payment;
 using Core.Entities;
 using Core.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers

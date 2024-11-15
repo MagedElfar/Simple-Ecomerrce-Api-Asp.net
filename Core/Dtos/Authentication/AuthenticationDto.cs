@@ -1,11 +1,11 @@
-﻿using Core.Dtos.User;
+﻿using Core.DTOS.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Dtos.Authentication
+namespace Core.DTOS.Authentication
 {
     public class AuthenticationDto:UserDto
     {

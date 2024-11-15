@@ -8,6 +8,7 @@ namespace Core.Entities
 {
     public class ShippingAddress:Address
     {
-        public string Phone {  get; set; }
+        public string Phone { get; set; }
+
     }
 }

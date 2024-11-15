@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Dtos.Cart
+namespace Core.DTOS.Cart
 {
     public class UpdateCartItemDto
     {

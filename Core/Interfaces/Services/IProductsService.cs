@@ -1,19 +1,23 @@
-﻿using Core.Dtos.Products;
+﻿using Core.DTOS.Product;
+using Core.DTOS.Shared;
 using Core.Entities;
-using Core.Specifications;
 using Microsoft.AspNetCore.Http;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Core.Interfaces.Services
 {
-    public interface IProductsService:IBaseService<Product>
+    public interface IProductsService
     {
-        Task<Product> AddProductAsync(AddProductDto addProductDto);
-        Task<Product> UpdateProductAsync(int id ,UpdateProductDto updateProductDto);
+        Task<ListWithCountDto<ProductDto>> GetAndCountAll(ProductQueryDto productQueryDto);
+        Task<ProductDto> GetProductAsync(int id);
+        Task<ProductDto> CreateProductAsync(AddProductDto addProductDto);
+        Task<ProductDto> UpdateProductAsync(int id, UpdateProductDto updateProductDto);
         Task DeleteProductAsync(int id);
-        Task<Product> UpdateProductImage(int id , IFormFile file);
+        Task<string> UpdateProductImage(int id, IFormFile file);
         Task DeleteProductImage(int id);
-
-
     }
 }

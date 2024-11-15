@@ -1,4 +1,4 @@
-﻿using Core.Dtos.Authentication;
+﻿using Core.DTOS.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Linq;

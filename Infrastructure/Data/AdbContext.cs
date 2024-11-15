@@ -9,17 +9,18 @@ namespace Infrastructure.Data
     {
         public AdbContext(DbContextOptions options) :base(options)
         {
-            
+
         }
 
-        public DbSet<ApplicationUser> Users {  get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductType> ProductTypes { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderItem> OrderItems  { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
 
+        public override DbSet<ApplicationUser> Users {  get; set; }
+   
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,7 +28,7 @@ namespace Infrastructure.Data
 
             modelBuilder.Ignore<CartItem>();
             //modelBuilder.Ignore<ShippingAddress>();
-            modelBuilder.Ignore<ShippingMethod>();
+            //modelBuilder.Ignore<ShippingMethod>();
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }

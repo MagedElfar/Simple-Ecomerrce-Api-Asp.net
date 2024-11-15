@@ -8,10 +8,10 @@ namespace Core.Entities
 {
     public class PaymentResult
     {
-        public string? PaymentIntentId {  get; set; }
+        public string? PaymentId { get; set; }
 
         public string? ClientSecret { get; set; }
 
-        public string Status {  get; set; }
+        public string Status { get; set; }
     }
 }

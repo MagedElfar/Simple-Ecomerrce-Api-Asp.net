@@ -1,13 +1,11 @@
-﻿using Core.Entities;
-using Core.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Dtos.Order
+namespace Core.DTOS.Order
 {
     public class CreateOrderDto
     {
@@ -38,7 +36,7 @@ namespace Core.Dtos.Order
         public string Zipcode { get; set; }
 
         [Required]
-        [Range( 1 , int.MaxValue , ErrorMessage = "Paymentmethod id should be graterthan 0")]
+        [Range(1, int.MaxValue, ErrorMessage = "Paymentmethod id should be graterthan 0")]
         public int PaymentMethodId { get; set; }
     }
 }

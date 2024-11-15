@@ -4,11 +4,14 @@ namespace API.Extensions
 {
     public static class OptionsExtensions
     {
+        public static IServiceCollection AddApplicationOptions(this IServiceCollection services)
+        {
 
-        public static IServiceCollection AddApplicationOptions(this IServiceCollection services , WebApplicationBuilder builder) {
+            var serviceProvider = services.BuildServiceProvider();
+            var configration = serviceProvider.GetRequiredService<IConfiguration>();
 
-            services.Configure<JWTOption>(builder.Configuration.GetSection("JWT"));
-            services.Configure<StripeOption>(builder.Configuration.GetSection("StripeSettings"));
+            services.Configure<JwtOptions>(configration.GetSection("JWT"));
+            services.Configure<StripeOption>(configration.GetSection("StripeSettings"));
 
             return services;
         }

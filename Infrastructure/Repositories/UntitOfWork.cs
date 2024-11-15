@@ -20,7 +20,7 @@ namespace Infrastructure.Repositories
         }
         public async Task<int> Compleate()
         {
-           return await context.SaveChangesAsync();
+            return await context.SaveChangesAsync();
         }
 
         public void Dispose()
@@ -30,22 +30,23 @@ namespace Infrastructure.Repositories
 
         public IGenericRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
         {
-            if(repositories == null) repositories = new Hashtable();
+            if (repositories == null) repositories = new Hashtable();
 
             var type = typeof(TEntity);
             var typeName = type.Name;
 
-            if (!repositories.ContainsKey(typeName)) {
+            if (!repositories.ContainsKey(typeName))
+            {
 
                 var repoType = typeof(GenericRepository<>);
-                var repoInstance = Activator.CreateInstance(repoType.MakeGenericType(type) , context);
+                var repoInstance = Activator.CreateInstance(repoType.MakeGenericType(type), context);
 
-                repositories.Add(typeName , repoInstance ); 
+                repositories.Add(typeName, repoInstance);
 
             }
 
 
-            return (IGenericRepository<TEntity>) repositories[typeName];
+            return (IGenericRepository<TEntity>)repositories[typeName];
         }
     }
 }

@@ -18,9 +18,9 @@ namespace Infrastructure.Data.Configuration
                 .HasMaxLength(50)
                 .IsRequired();
 
-            builder.HasOne(x => x.ProductType)
+            builder.HasOne(x => x.Category)
                 .WithMany(x => x.Products)
-                .HasForeignKey(x => x.ProductTypeId)
+                .HasForeignKey(x => x.CategoryId)
                 .OnDelete(DeleteBehavior.SetNull);
 
             builder.HasOne(x => x.Brand)

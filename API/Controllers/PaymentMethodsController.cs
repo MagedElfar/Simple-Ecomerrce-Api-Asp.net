@@ -7,18 +7,17 @@ namespace API.Controllers
 {
     public class PaymentMethodsController : BaseApiController
     {
-        private readonly IBaseService<PaymentMethod> paymentMethodService;
+        private readonly IPaymentMethodService paymentMethodService;
 
-        public PaymentMethodsController(IBaseService<PaymentMethod> paymentMethodService)
+        public PaymentMethodsController(IPaymentMethodService paymentMethodService)
         {
             this.paymentMethodService = paymentMethodService;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PaymentMethod>>> Get() {
-            var methods  = await paymentMethodService.FindAllAsync();
 
-            return Ok(methods.Select(x => new { x.Id, x.Name }));
+            return Ok(await paymentMethodService.GetPaymentMethodsAsync());
         }
     }
 }

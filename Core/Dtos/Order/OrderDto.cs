@@ -1,14 +1,11 @@
-﻿using Core.Dtos.Address;
-using Core.Entities;
-using Core.Enums;
+﻿using Core.DTOS.Address;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Dtos.Order
+namespace Core.DTOS.Order
 {
     public class OrderDto
     {
@@ -17,11 +14,9 @@ namespace Core.Dtos.Order
         public decimal SubTotal { get; set; }
         public string Status { get; set; }
         public string CustomerEmail { get; set; }
-
         public string PaymentMethod { get; set; }
-
         public string PaymentIntentId { get; set; }
         public ShippingAddressDto ShippingAddress { get; set; }
-        public IEnumerable<OrderItemDto> Items { get; set; }  = Enumerable.Empty<OrderItemDto>();
+        public IEnumerable<OrderItemDto> Items { get; set; } = Enumerable.Empty<OrderItemDto>();
     }
 }

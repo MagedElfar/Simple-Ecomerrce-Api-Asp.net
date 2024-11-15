@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Dtos.User
+namespace Core.DTOS.User
 {
     public class UserDto
     {
@@ -14,7 +14,6 @@ namespace Core.Dtos.User
 
         public string Email { get; set; }
 
-        public IEnumerable<string> Roles { get; set; } = new List<string>() ;
-
+        public IEnumerable<string> Roles { get; set; } = new List<string>();
     }
 }

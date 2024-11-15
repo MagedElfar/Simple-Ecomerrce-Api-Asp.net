@@ -9,5 +9,7 @@ namespace Core.Entities
     public abstract class BaseEntity
     {
         public int Id { get; set; }
+
+        public DateTimeOffset CreatedDate { get; set; } = DateTimeOffset.Now;
     }
 }

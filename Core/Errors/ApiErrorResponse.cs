@@ -11,8 +11,7 @@ namespace Core.Errors
 
         public string Type => "Error";
         public int StatuseCode { get; set; }
-
-        public string Message { get; set; }
+        public string? Message { get; set; }
 
         private string? GetDefulteMessage(int statuseCode)
         {
