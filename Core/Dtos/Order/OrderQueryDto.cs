@@ -53,9 +53,6 @@ namespace Core.DTOS.Order
                 builder.WithOrderBy(Sort, Asc ?? true);
             }
 
-            builder.WithLimit(Limit);
-            builder.WithPage(Page);
-
             return builder;
         }
 

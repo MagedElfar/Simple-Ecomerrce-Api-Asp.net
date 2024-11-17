@@ -45,11 +45,6 @@ namespace Core.DTOS.Product
                 builder.WithBrandId(BrandId);
             }
 
-
-
-            builder.WithLimit(Limit);
-            builder.WithPage(Page);
-
             return builder;
         }
     }

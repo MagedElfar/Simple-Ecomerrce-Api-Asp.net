@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Core.Entities;
+using Core.Interfaces.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Core.Interfaces.Services
 {
-    public interface ISpecifications<T>
+    public interface ISpecifications<T> where T : class, IBaseEntity
     {
         Expression<Func<T, bool>> Criteria { get; }
         List<string> Includes { get; }

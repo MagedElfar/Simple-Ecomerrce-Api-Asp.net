@@ -11,6 +11,7 @@ namespace Application.Services
     public class AuthenticationService: IAuthenticationService
     {
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
         private readonly ITokenService tokenService;
         private readonly IMapper mapper;
 
@@ -18,18 +19,22 @@ namespace Application.Services
             UserManager<ApplicationUser> userManager,
             ITokenService tokenService,
             IMapper mapper
-        ){
+,
+            SignInManager<ApplicationUser> signInManager)
+        {
             this.userManager = userManager;
             this.tokenService = tokenService;
             this.mapper = mapper;
+            this.signInManager = signInManager;
         }
 
         public async Task<AuthenticationDto> Login(LoaginDto loaginDto)
         {
-            var user = await userManager.FindByEmailAsync( loaginDto.Email );
+            var user = await userManager.FindByEmailAsync(loaginDto.Email);
 
-            if (user == null || !await userManager.CheckPasswordAsync(user , loaginDto.Password))
+            if (user == null || !await userManager.CheckPasswordAsync(user, loaginDto.Password))
                 throw new UserUnauthorizedException("Invalid Credentials");
+
 
             var roles = await userManager.GetRolesAsync(user);
 
@@ -48,13 +53,12 @@ namespace Application.Services
    
         public async Task<AuthenticationDto> Register(RegisterDto registerDto)
         {
-            if (await userManager.FindByEmailAsync(registerDto.Email) is not null)
-                throw new BadRequestException(err:new[]{ "Email is already exsist" } );
-
             var user = new ApplicationUser
             {
                 UserName = registerDto.Username,
                 Email = registerDto.Email,
+                FirstName = registerDto.FirstName,
+                LastName = registerDto.LastName,
             };
 
             var result = await userManager.CreateAsync(user, registerDto.Password);

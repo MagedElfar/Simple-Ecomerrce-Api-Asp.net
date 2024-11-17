@@ -47,6 +47,9 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ListWithCountDto<OrderDto>>>> GetUserOrders([FromQuery] OrderQueryDto orderQuery)
         {
+            var userId = HttpContext.User.GetUserId() ;
+
+            orderQuery.UserId = userId ;
             return Ok(await ordersService.GetUserOrdersCountAll(orderQuery));
         }
     }

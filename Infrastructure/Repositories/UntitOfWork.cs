@@ -28,7 +28,7 @@ namespace Infrastructure.Repositories
             context.Dispose();
         }
 
-        public IGenericRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
+        public IGenericRepository<TEntity> Repository<TEntity>() where TEntity : class, IBaseEntity
         {
             if (repositories == null) repositories = new Hashtable();
 

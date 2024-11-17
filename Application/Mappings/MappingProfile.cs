@@ -6,6 +6,7 @@ using Core.DTOS.Category;
 using Core.DTOS.Order;
 using Core.DTOS.PaymentMethod;
 using Core.DTOS.Product;
+using Core.DTOS.Role;
 using Core.DTOS.User;
 using Core.Entities;
 using System;
@@ -25,6 +26,8 @@ namespace Application.Mappings
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.UserName))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.Roles, opt => opt.Ignore()); // Ignore roles for now
+
+            CreateMap<UpdateUserDto, ApplicationUser>();
 
             CreateMap<ApplicationUser, AuthenticationDto>();
 
@@ -125,6 +128,9 @@ namespace Application.Mappings
              .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Street))
              .ForMember(dest => dest.State, opt => opt.MapFrom(src => src.State))
              .ForMember(dest => dest.Zipcode, opt => opt.MapFrom(src => src.Zipcode));
+
+            //role
+            CreateMap<ApplicationRole, RoleDto>();
         }
     }
 }

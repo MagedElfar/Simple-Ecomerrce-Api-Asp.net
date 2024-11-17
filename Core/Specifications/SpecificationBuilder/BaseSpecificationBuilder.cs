@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using Core.Helper;
+using Core.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace Core.Specifications.SpecificationBuilder
 {
     public abstract class BaseSpecificationBuilder<T , TDerived> 
-        where T:BaseEntity
+        where T:class, IBaseEntity
         where TDerived : BaseSpecificationBuilder<T, TDerived>
     {
         protected Expression<Func<T, bool>> _criteria = PredicateBuilder.New<T>(true); // Always true by default

@@ -1,10 +1,11 @@
 ﻿using Core.Entities;
+using Core.Interfaces.Repositories;
 using Core.Interfaces.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure
 {
-    public class SpecificationsEvaluate<TEntity> where TEntity : BaseEntity
+    public class SpecificationsEvaluate<TEntity> where TEntity :class,IBaseEntity
     {
         public static IQueryable<TEntity> GetQuery(IQueryable<TEntity> query , ISpecifications<TEntity> specifications) {
             var newQuery = query;

@@ -1,10 +1,13 @@
-﻿using Core.Interfaces.Services;
+﻿using Core.Entities;
+using Core.Interfaces.Repositories;
+using Core.Interfaces.Services;
 using System.Linq.Expressions;
 using System.Reflection;
 
 namespace Core.Specifications
 {
     public class BaseSpecifications<T> : ISpecifications<T>
+        where T : class, IBaseEntity
     {
         public BaseSpecifications(
             Expression<Func<T, bool>> criteria = null,

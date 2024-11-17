@@ -9,7 +9,7 @@ namespace Core.Interfaces.Repositories
 {
     public interface IUnitOfWork:IDisposable
     {
-        IGenericRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity;
+        IGenericRepository<TEntity> Repository<TEntity>() where TEntity : class, IBaseEntity;
 
         Task<int> Compleate();
 

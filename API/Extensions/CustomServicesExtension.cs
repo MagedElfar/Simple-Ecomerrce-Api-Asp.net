@@ -4,6 +4,7 @@ using Application.Strategies;
 using Core.Interfaces.Repositories;
 using Core.Interfaces.Services;
 using Infrastructure.Repositories;
+using Microsoft.AspNetCore.DataProtection.KeyManagement.Internal;
 
 namespace API.Extensions
 {
@@ -21,6 +22,8 @@ namespace API.Extensions
             services.AddScoped<ICartService , CartService>();
             services.AddScoped<IMediaStorageService, LocalStorageService>();
             services.AddScoped<IPaymentsService, PaymentsService>();
+            services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IStripeService, StripeService>();
             services.AddScoped<PaymentFactory>();
             services.AddScoped<IOrderService, OrderService>();

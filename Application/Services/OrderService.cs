@@ -104,10 +104,13 @@ namespace Application.Services
         public async Task<ListWithCountDto<OrderDto>> GetUserOrdersCountAll(OrderQueryDto orderQueryDto)
         {
             var spec = orderQueryDto.BuildSpecification()
+                .WithUserId(orderQueryDto.UserId.Value)
+                .WithLimit(orderQueryDto.Limit)
+                .WithPage(orderQueryDto.Page)
                .Build();
 
             var orders = await unitOfWork.Repository<Order>().GetAllAsync(spec);
-            var count = await unitOfWork.Repository<Order>().GetCountAsync(spec);
+            var count = await unitOfWork.Repository<Order>().GetCountAsync(orderQueryDto.BuildSpecification().Build());
 
             return new ListWithCountDto<OrderDto>
             {

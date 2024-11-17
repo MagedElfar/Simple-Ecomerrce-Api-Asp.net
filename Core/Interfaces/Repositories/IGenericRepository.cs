@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Core.Interfaces.Repositories
 {
-    public interface IGenericRepository<T> where T : BaseEntity
+    public interface IGenericRepository<T> where T :class, IBaseEntity
     {
         Task<T?> GetByIdAsync(int id);
         Task<T?> GetOneAsync(Expression<Func<T, bool>> predicate);

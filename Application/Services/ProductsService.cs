@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Core.DTOS.Product;
 using Core.DTOS.Shared;
+using Core.DTOS.User;
 using Core.Entities;
 using Core.Exceptions;
 using Core.Interfaces.Repositories;
@@ -38,10 +39,12 @@ namespace Application.Services
             var spec = productQueryDto.BuildSpecification()
                 .Include("Category")
                 .Include("Brand")
+                .WithLimit(productQueryDto.Limit)
+                .WithPage(productQueryDto.Page)
                 .Build();
 
             var products = await unitOfWork.Repository<Product>().GetAllAsync(spec);
-            var count = await unitOfWork.Repository<Product>().GetCountAsync(spec);
+            var count = await unitOfWork.Repository<Product>().GetCountAsync(productQueryDto.BuildSpecification().Build());
 
             return new ListWithCountDto<ProductDto>
             {
