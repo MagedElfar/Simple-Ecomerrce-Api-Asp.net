@@ -5,6 +5,7 @@ using Core.Interfaces.Repositories;
 using Core.Interfaces.Services;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.DataProtection.KeyManagement.Internal;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace API.Extensions
 {
@@ -28,6 +29,7 @@ namespace API.Extensions
             services.AddScoped<PaymentFactory>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IStockService, StockService>();
+            services.AddScoped<IEmailSender , GmailEmailSender>();
             services.AddScoped<CashOnDeliveryPaymentStrategy>();
             services.AddScoped<StripePaymentStrategy>();
             return services;

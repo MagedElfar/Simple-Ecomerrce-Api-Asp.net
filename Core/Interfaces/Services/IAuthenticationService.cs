@@ -10,7 +10,10 @@ namespace Core.Interfaces.Services
     public interface IAuthenticationService
     {
         Task<AuthenticationDto> Login(LoaginDto loaginDto);
+        Task<ConfirmationEmailResponseDto> Register(RegisterDto registerDto);
 
-        Task<AuthenticationDto> Register(RegisterDto registerDto);
+        Task<ConfirmationEmailResponseDto> CreateConfiramtionToken(string email);
+
+        Task CofirmationEmail(ConfirmationEmailDto confirmationEmailDto);
     }
 }

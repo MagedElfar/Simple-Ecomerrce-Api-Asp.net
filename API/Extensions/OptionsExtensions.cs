@@ -12,6 +12,7 @@ namespace API.Extensions
 
             services.Configure<JwtOptions>(configration.GetSection("JWT"));
             services.Configure<StripeOption>(configration.GetSection("StripeSettings"));
+            services.Configure<GmailSmtpSettings>(configration.GetSection("GmailSmtpSettings"));
 
             return services;
         }

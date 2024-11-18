@@ -30,5 +30,21 @@ namespace API.Controllers
 
             return Ok(user);
         }
+
+        [HttpPost("sendConfirmation")]
+        public async Task<ActionResult<ConfirmationEmailResponseDto>> SendCofirmationEmail(CreateComfirmationLinkDto createComfirmationLinkDto)
+        {
+            return Ok(await authenticationService.CreateConfiramtionToken(createComfirmationLinkDto.Email));
+        }
+
+        [HttpGet("confirmEmail")]
+        public async Task<ActionResult<ConfirmationEmailResponseDto>> CofirmationEmail([FromQuery] ConfirmationEmailDto confirmationEmailDto)
+        {
+
+            await authenticationService.CofirmationEmail(confirmationEmailDto);
+
+            return Ok("Email confirmed successfully!");
+
+        }
     }
 }

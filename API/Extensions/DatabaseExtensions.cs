@@ -21,6 +21,7 @@ namespace API.Extensions
                .AddIdentity<ApplicationUser, ApplicationRole>(options =>
                {
                    options.User.RequireUniqueEmail = true;
+                   options.SignIn.RequireConfirmedEmail = true;
                    options.Password.RequireDigit = false;            // Require at least one digit (can disable)
                    options.Password.RequireLowercase = false;        // Require at least one lowercase character (can disable)
                    options.Password.RequireUppercase = false;        // Require at least one uppercase character (can disable)
